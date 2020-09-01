@@ -1,0 +1,427 @@
+@import "variables";
+@import "functions";
+* {
+    //padding: 0;
+    //margin: 0;
+    //box-sizing: border-box;
+    //scroll-behavior: smooth;
+    //font-family: 'Poppins', sans-serif;
+    @include scrollbars(.5em, slategray);
+}
+
+.profile-banner {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    .profile-banner-top {
+        flex: 1;
+        position: relative;
+        background-color: $darkBAckground;
+    }
+
+    .profile-banner-bottom {
+        display: flex;
+        flex: 1;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        background-color: $backgroundSecondary;
+
+        .user-card-wrapper {
+            width: 730px;
+            height: 430px;
+            position: absolute;
+            top: 110px;
+            align-items: center;
+            margin: auto;
+            box-shadow: 0 8px 6px -8px $darkBAckground;
+
+            .user-card-top {
+                height: 30%;
+                background-color: $backgroundSecondary;
+                border-bottom: 1px solid #B5B8BA;
+                display: flex;
+                justify-content: center;
+                position: relative;
+                &:hover .dots-menu {
+                    opacity: 1;
+                    cursor: pointer;
+                    transition: opacity .4s linear;
+                }
+
+                &:hover .menu-options {
+                    opacity: 1;
+                    transition: opacity .4s linear;
+                }
+
+                .user-profile-image {
+                    width: 170px;
+                    height: 170px;
+                    position: absolute;
+                    top: 25px;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        border-radius: 50%;
+                        border: 2px solid white;
+                        box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+                    }
+                }
+
+                .menu-options {
+                    position: absolute;
+                    top: 5px;
+                    right: 10px;
+                    opacity: 0;
+
+                    img {
+                        width: 20px;
+                        height: 20px;
+                        display: flex;
+                        flex-direction: column;
+                        margin-top: 5px;
+                        cursor: pointer;
+                    }
+
+                }
+            }
+
+            .user-card-bottom {
+                height: 70%;
+                background-color: #FFFFFF;
+                display: flex;
+
+                .user-data {
+                    width: 100%;
+                    height: 100%;
+                    position: relative;
+                    display: flex;
+                    justify-content: center;
+
+                    .user-data-credentials {
+                        width: 100%;
+                        position: absolute;
+                        top: 90px;
+                        display: flex;
+                        justify-content: center;
+                        flex-direction: column;
+                        text-align: center;
+
+                        a {
+                            font-size: 14px;
+                            color: #617D98;
+                        }
+
+                        h6 {
+                            font-size: 20px;
+                            font-weight: 400;
+                        }
+
+                        .user-media {
+                            width: 40%;
+                            padding-top: 30px;
+                            display: flex;
+                            justify-content: space-around;
+                            margin: auto;
+                        }
+
+                        .follow-button {
+                            margin-top: 35px;
+
+                            button {
+                                padding: 10px 20px;
+                                text-transform: uppercase;
+                                background-color: $darkBAckground;
+                                border: none;
+                                outline: none;
+                                color: white;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+//posts
+.posts-wrapper {
+    max-width: 100%;
+    max-height: 160vh;
+    padding-bottom: 30px;
+    background-color: $backgroundSecondary;
+    display: flex;
+    justify-content: center;
+
+    .posts-banner {
+        max-width: 1400px;
+        max-height: 100%;
+        padding: 30px 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        overflow-y: auto;
+        margin: 0 10px 30px 10px;
+
+    }
+
+    .post-wrapper {
+        width: 300px;
+        height: 350px;
+        padding: 10px;
+        position: relative;
+        img {
+            width: 100%;
+            height: 100%;
+        }
+
+        &:hover .cross_mark {
+            opacity: 1;
+        }
+
+        .cross_mark {
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            opacity: 0;
+            cursor: pointer;
+        }
+    }
+}
+
+//LOGIN FORM
+.login_form_page_wrapper {
+    width: 100%;
+    min-height: 100vh;
+    background-color: $darkBAckground;
+    //padding-top: 80px;
+    //padding: 80px 0 40px 0;
+    display: flex;
+
+    .login-form-wrapper {
+        width: 360px;
+        height: 520px;
+        background-color: $backgroundSecondary;
+        margin: auto;
+        padding: 80px 40px;
+
+            .login-form {
+                overflow: hidden;
+            }
+
+
+            h1 {
+                text-align: center;
+                margin-bottom: 30px;
+                font-weight: 400;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+            }
+
+            .txtb {
+                border-bottom: 1px solid #adadad;
+                position: relative;
+                //margin: 30px 0;
+                margin-top: 30px;
+                background-color: transparent;
+
+                .login-form-span {
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        left: 0;
+                        bottom: -1;
+                        height: 100%;
+                        width: 100%;
+                        border-bottom: 2px solid $mainColor;
+                        transform: translateX(-100%);
+                        transition: transform .3s ease;
+                    }
+                }
+
+                input {
+                    width: 100%;
+                    height: 30px;
+                    font-size: 15px;
+                    color: #333;
+                    border: none;
+                    outline: none;
+                    background: none;
+                    padding: 0 3px;
+
+                    &:focus + .login-form-span:after {
+                        transform: translateX(0);
+                    }
+                }
+
+            }
+
+            button {
+                width: 100%;
+            }
+
+        .bottom-text {
+            padding-top: 30px;
+            display: flex;
+            align-items: baseline;
+
+            h6 {
+                font-size: 14px;
+                padding-right: 5px;
+                font-weight: 400;
+            }
+            a {
+                font-size: 16px;
+                color: $darkBAckground;
+                text-transform: uppercase;
+            }
+        }
+    }
+
+    //Registration Form
+    .register_form_wrapper {
+        padding-top: 40px;
+        h1 {
+            margin-bottom: 2px;
+        }
+    }
+
+}
+
+//show single post
+.show-post-wrapper {
+    width: 100%;
+    height: 100vh;
+    background-color: $darkBAckground;
+    display: flex;
+
+    .show-post-banner {
+        width: 800px;
+        height: 480px;
+        background-color: white;
+        margin: auto;
+        display: flex;
+
+        .show-single-post {
+            width: 60%;
+            height: 100%;
+        }
+
+        .show-post-right {
+            width: 40%;
+            height: 20%;
+            display: flex;
+            flex-direction: column;
+
+            .show-post-data {
+                border-bottom: 1px solid silver;
+
+                .show-post-cred {
+                    display: flex;
+
+                    img {
+                        width: 55px;
+                        height: 55px;
+                        margin: 7px 0 0 10px;
+                    }
+
+                    .show-post-description {
+                        display: flex;
+
+                        a {
+                            padding: 0 5px 0 7px;
+                            margin: auto;
+                            font-size: 11px;
+                            color: $darkBAckground;
+                        }
+
+                        button {
+                            padding: 5px 8px;
+                            border: none;
+                            background-color: $darkBAckground;
+                            color: white;
+                            font-size: 11px;
+                            border-radius: 5px;
+                            letter-spacing: .5px;
+                        }
+                    }
+                }
+
+                .post-caption {
+                    padding: 10px 5px 0 10px;
+                    font-size: 13px;
+                }
+            }
+
+            .post-comment-section {
+                form {
+                    display: flex;
+
+                    input {
+                        width: 90%;
+                        height: 30px;
+                        margin: 10px 5% 10px 3%;
+                        padding: 10px 0 0 3px;
+                        border: none;
+                        border-bottom: 1px solid silver;
+                        outline: none;
+                    }
+
+                    button {
+                        border: none;
+                        background-color: transparent;
+
+                        &:focus {
+                            outline: none;
+                        }
+
+                        img {
+                            width: 20px;
+                            height: 20px;
+                            margin: auto;
+                            margin-right: 6px;
+                            cursor: pointer;
+                        }
+                    }
+
+                }
+            }
+        }
+
+        .post-comments-display {
+            padding: 10px 5px;
+            display: flex;
+            flex-direction: column;
+
+            .comment-banner {
+                height: 100%;
+                width: 100%;
+                overflow: auto;
+                h4 {
+                    color: $darkBAckground;
+                    margin-bottom: 0;
+                    padding-top: 15px;
+                }
+                span {
+                    font-size: 12px;
+                    color: $darkBAckground;
+                    padding-bottom: 5px;
+                }
+
+            }
+        }
+
+
+    }
+
+    }
+
+
+
+
