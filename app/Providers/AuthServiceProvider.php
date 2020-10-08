@@ -2,11 +2,19 @@
 
 namespace App\Providers;
 
+use App\Models\Comment;
+use App\Models\Flag;
 use App\Models\Profile;
+use App\Policies\CommentPolicy;
+use App\Policies\FollowBtnPolicy;
+use App\Policies\FollowButtonPolicy;
 use App\Policies\ProfilePolicy;
+use App\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\View;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -16,8 +24,8 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        // 'App\Model' => 'App\Policies\ModelPolicy',
         Profile::class => ProfilePolicy::class,
+        Comment::class => CommentPolicy::class,
     ];
 
     /**
@@ -29,7 +37,5 @@ class AuthServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
         $this->registerPolicies();
-
-        //
     }
 }

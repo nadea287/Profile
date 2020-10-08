@@ -19,3 +19,11 @@
         scrollbar-track-color: $background-color;
     }
 }
+
+
+//not last child
+@mixin not-last-child($selector) {
+    & #{$selector}:not(:last-of-type) {
+        @content;
+    }
+}

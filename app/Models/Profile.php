@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\File;
 
 class Profile extends Model
 {
@@ -13,6 +14,14 @@ class Profile extends Model
     {
         $imagePath = ($this->image) ? $this->image:'/profile/Yn19ucPsybXysjMEPN8EqycJl78YskxGhmPuuRtN.png';
         return '/storage/' . $imagePath;
+    }
+
+    public function photo()
+    {
+        if ($this->image != null) {
+            return '/storage/' . $this->image;
+        }
+            return '/storage/profile/Yn19ucPsybXysjMEPN8EqycJl78YskxGhmPuuRtN.png';
     }
 
     public function user()

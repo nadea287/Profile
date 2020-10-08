@@ -51,5 +51,6 @@ $(function () {
         location.href = "/login";
     });
 
+    confirmDelete("#delete_comment", "wanna delete?");
 
 });

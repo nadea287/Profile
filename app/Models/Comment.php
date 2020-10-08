@@ -18,4 +18,13 @@ class Comment extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function hasBeenUpdated()
+    {
+        if ($this->action == "updated") {
+            return "Edited " . $this->updated_at->diffForHumans();
+        } else {
+            return "Created " . $this->created_at->diffForHumans();
+        }
+    }
 }

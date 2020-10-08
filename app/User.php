@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Flag;
 use App\Models\Post;
 use App\Models\Profile;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -58,6 +59,26 @@ class User extends Authenticatable
     public function posts()
     {
         return $this->hasMany(Post::class);
+    }
+
+    public function hasFlaged()
+    {
+        return $this->hasMany(Flag::class, 'author_id');
+    }
+
+    public function wasFlaged()
+    {
+        return $this->hasMany(Flag::class, 'target_id');
+    }
+
+    public function followers()
+    {
+        return $this->wasFlaged()->where('type', 'follow');
+    }
+
+    public function following()
+    {
+        return $this->hasFlaged()->where('type', 'follow');
     }
 
 }

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateProfileRequest;
+use App\Models\Flag;
 use App\Models\Post;
+use App\Models\Profile;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -11,9 +13,9 @@ use Intervention\Image\Facades\Image;
 
 class ProfilesController extends Controller
 {
-    public function index(User $user)
+    public function show(User $user)
     {
-        return view('profiles.index', compact('user'));
+        return view('profiles.show', compact('user'));
     }
 
     public function edit(User $user)
@@ -40,16 +42,19 @@ class ProfilesController extends Controller
             $data,
             $imageArray ?? []
         ));
-        return redirect('/profile/' . $user->id);
 
+        return redirect('/profile/' . $user->id);
     }
 
     public function destroy(User $user)
     {
-        $user->profile()->delete();
-        File::delete(public_path() . '/storage' . $user->posts());
+        File::delete(public_path() . '/storage/' . $user->profile->image);
+        $postsCollections = $user->posts()->pluck('image');
+        foreach ($postsCollections as $postsCollection) {
+            File::delete(public_path() . '/storage/' . $postsCollection);
+        }
         $user->posts()->delete();
+        $user->profile->delete();
         $user->delete();
-
     }
 }

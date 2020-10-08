@@ -1,3 +1,6 @@
+//hide after pseudo element
+$(".display-user-name").addClass('no-after');
+
 const hamburger = document.querySelector('.header .nav-bar .nav-list .hamburger');
 const mobile_menu = document.querySelector('.header .nav-bar .nav-list ul');
 const header = document.querySelector('.header.first-container');
@@ -9,7 +12,7 @@ hamburger.addEventListener('click', () => {
 
 document.addEventListener('scroll', () => {
     var scroll_position = window.scrollY;
-    if (scroll_position > 250) {
+    if (scroll_position > 50) {
         header.style.backgroundColor = "#29323c";
     } else {
         header.style.backgroundColor = "transparent";
@@ -17,30 +20,25 @@ document.addEventListener('scroll', () => {
 });
 
 
-var backTop = {
-    init: function(){
-        $(doc).ready(function(){
-
-            // Show or Hide The Sticky Footer Button
-
-            $(window).scroll(function(){
-                if ($(this).scrollTop() > 200 ) {
-
-                    $('#back_to_top').fadeIn(200);
-                } else {
-                    $('#back_to_top').fadeOut(200);
-                }
-            });
+//AOS
+AOS.init({
+    delay: 200,
+});
 
 
-            // Animate the scroll to top
+//arrow up
+const toTop = document.querySelector(".arrow-up-wrapper-section");
 
-            $('#back_to_top').click(function(e){
+window.addEventListener("scroll", () => {
+   if (window.pageYOffset > 100) {
+       //if page was scrolled 100 px
+       toTop.classList.add("active_back_to_top");
+   } else {
+       toTop.classList.remove("active_back_to_top");
+   }
 
-                e.preventDefault();
-                window.scrollTo({top: 0, behavior: 'smooth'});
-            });
+});
 
-        });
-    }
-};
+toTop.addEventListener("click", () => {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+});

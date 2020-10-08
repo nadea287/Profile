@@ -1,9 +1,11 @@
 @import "variables";
 @import "functions";
+@import "media";
+
 * {
-    //padding: 0;
-    //margin: 0;
-    //box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
     //scroll-behavior: smooth;
     //font-family: 'Poppins', sans-serif;
     @include scrollbars(.5em, slategray);
@@ -38,6 +40,14 @@
             margin: auto;
             box-shadow: 0 8px 6px -8px $darkBAckground;
 
+            @include _350 {
+                width: 200px;
+            }
+
+            @include _768 {
+                width: 360px;
+            }
+
             .user-card-top {
                 height: 30%;
                 background-color: $backgroundSecondary;
@@ -61,6 +71,12 @@
                     height: 170px;
                     position: absolute;
                     top: 25px;
+
+                    @include _350 {
+                        width: 100px;
+                        height: 100px;
+                        top: 70px;
+                    }
 
                     img {
                         width: 100%;
@@ -110,14 +126,26 @@
                         flex-direction: column;
                         text-align: center;
 
+                        @include _350 {
+                            top: 60px;
+                        }
+
                         a {
                             font-size: 14px;
                             color: #617D98;
+
+                            @include _350 {
+                                font-size: 11px;
+                            }
                         }
 
                         h6 {
                             font-size: 20px;
                             font-weight: 400;
+
+                            @include _350 {
+                                font-size: 15px;
+                            }
                         }
 
                         .user-media {
@@ -126,10 +154,24 @@
                             display: flex;
                             justify-content: space-around;
                             margin: auto;
+
+                            @include _350 {
+                                width: 75%;
+                                padding-top: 10px;
+                                justify-content: space-around;
+                            }
+
+                            @include _768 {
+                                width: 60%;
+                            }
                         }
 
                         .follow-button {
                             margin-top: 35px;
+
+                            @include _350 {
+                                margin-top: 20px;
+                            }
 
                             button {
                                 padding: 10px 20px;
@@ -138,7 +180,17 @@
                                 border: none;
                                 outline: none;
                                 color: white;
+
+                                @include _350 {
+                                    font-size: 11px;
+                                    padding: 5px 10px;
+                                    letter-spacing: 1px;
+                                }
                             }
+                        }
+
+                        .profile-url {
+                            margin-top: 40px;
                         }
                     }
                 }
@@ -167,6 +219,10 @@
         overflow-y: auto;
         margin: 0 10px 30px 10px;
 
+        @include _350 {
+            padding: 10px 10px;
+        }
+
     }
 
     .post-wrapper {
@@ -174,6 +230,16 @@
         height: 350px;
         padding: 10px;
         position: relative;
+
+        @include _350 {
+            width: 150px;
+            height: 150px;
+        }
+
+        @include _768 {
+            width: 250px;
+            height: 250px;
+        }
         img {
             width: 100%;
             height: 100%;
@@ -232,6 +298,7 @@
                 background-color: transparent;
 
                 .login-form-span {
+                    pointer-events: none;
                     &::after {
                         content: "";
                         position: absolute;
@@ -271,15 +338,10 @@
             display: flex;
             align-items: baseline;
 
-            h6 {
-                font-size: 14px;
-                padding-right: 5px;
-                font-weight: 400;
-            }
             a {
-                font-size: 16px;
+                font-size: 14px;
                 color: $darkBAckground;
-                text-transform: uppercase;
+                font-weight: 400;
             }
         }
     }
@@ -300,6 +362,7 @@
     height: 100vh;
     background-color: $darkBAckground;
     display: flex;
+    position: relative;
 
     .show-post-banner {
         width: 800px;
@@ -308,9 +371,28 @@
         margin: auto;
         display: flex;
 
+        @include _350 {
+            width: 200px;
+            flex-direction: column;
+        }
+
+        @include _768 {
+            width: 300px;
+            flex-direction: column;
+        }
+
         .show-single-post {
             width: 60%;
             height: 100%;
+
+            @include _350 {
+                width: 100%;
+                height: 40%;
+            }
+            @include _768 {
+                width: 100%;
+                height: 45%;
+            }
         }
 
         .show-post-right {
@@ -329,6 +411,11 @@
                         width: 55px;
                         height: 55px;
                         margin: 7px 0 0 10px;
+
+                        @include _350 {
+                            width: 45px;
+                            height: 45px;
+                        }
                     }
 
                     .show-post-description {
@@ -349,6 +436,21 @@
                             font-size: 11px;
                             border-radius: 5px;
                             letter-spacing: .5px;
+
+                            @include _350 {
+                                padding: 3px 4px;
+                                font-size: 10px;
+                            }
+                        }
+                        .add-post-time {
+                            padding: 5px 10px;
+                            margin: auto;
+                            color: $mutedColor;
+
+                            @include _350 {
+                                display: flex;
+                                flex-direction: column;
+                            }
                         }
                     }
                 }
@@ -356,6 +458,17 @@
                 .post-caption {
                     padding: 10px 5px 0 10px;
                     font-size: 13px;
+
+                    @include _350 {
+                        font-size: 12px;
+                    }
+                }
+
+                @include _350 {
+                    width: 200px;
+                }
+                @include _768 {
+                    width: 300px;
                 }
             }
 
@@ -363,33 +476,48 @@
                 form {
                     display: flex;
 
-                    input {
-                        width: 90%;
-                        height: 30px;
-                        margin: 10px 5% 10px 3%;
-                        padding: 10px 0 0 3px;
-                        border: none;
-                        border-bottom: 1px solid silver;
-                        outline: none;
-                    }
-
-                    button {
-                        border: none;
-                        background-color: transparent;
-
-                        &:focus {
+                        input {
+                            width: 90%;
+                            height: 30px;
+                            margin: 10px 5% 10px 3%;
+                            padding: 10px 0 0 3px;
+                            border: none;
+                            border-bottom: 1px solid silver;
                             outline: none;
+
+                            @include _350 {
+                                font-size: 11px;
+                            }
                         }
 
-                        img {
-                            width: 20px;
-                            height: 20px;
-                            margin: auto;
-                            margin-right: 6px;
-                            cursor: pointer;
-                        }
-                    }
+                        button {
+                            border: none;
+                            background-color: transparent;
 
+                            &:focus {
+                                outline: none;
+                            }
+
+                            img {
+                                width: 20px;
+                                height: 20px;
+                                margin: auto;
+                                margin-right: 6px;
+                                cursor: pointer;
+
+                                @include _350 {
+                                    width: 15px;
+                                    height: 15px;
+                                }
+                            }
+                        }
+                }
+                @include _350 {
+                    width: 200px;
+                }
+
+                @include _768 {
+                    width: 300px;
                 }
             }
         }
@@ -400,7 +528,7 @@
             flex-direction: column;
 
             .comment-banner {
-                height: 100%;
+                height: 300px;
                 width: 100%;
                 overflow: auto;
                 h4 {
@@ -412,16 +540,393 @@
                     font-size: 12px;
                     color: $darkBAckground;
                     padding-bottom: 5px;
+
+                    &:focus {
+                        outline: none;
+                        cursor: text;
+                    }
+
+                }
+
+                .posted-time {
+                    display: flex;
+                    color: $mutedColor;
+                }
+
+                .comment-actions {
+                    .comment_edit_icon {
+                            display: flex;
+                            align-items: baseline;
+                            //justify-content: flex-end;
+                            //position: relative;
+                            //z-index: 10000;
+
+                            i {
+                                font-size: 14px;
+                                color: $darkBAckground;
+                                margin: 0 5px 0 70%;
+                                cursor: pointer;
+                                display: none;
+                            }
+
+                        span {
+                            font-size: 14px;
+                            color: $darkBAckground;
+                            cursor: pointer;
+                            padding-bottom: 0;
+                            display: none;
+                        }
+
+                    }
+
+                    &:hover i,
+                    &:hover span {
+                        display: initial;
+                    }
+
+                    .comment_body {
+                        cursor: text;
+                    }
                 }
 
             }
+            @include _350 {
+                width: 200px;
+                height: 150px;
+            }
+
+                @include _768 {
+                width: 300px;
+                height: 120px;
+            }
+        }
+    }
+
+    //arrow back
+    .arrow-back {
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        top: 70px;
+        left: 60px;
+        filter: drop-shadow(0 0 0.1rem $mainColor);
+
+        @include _350 {
+            display: none;
+        }
+        @include _768 {
+            display: none;
+        }
+    }
+
+    }
+
+//edit profile
+.edit_form_page_wrapper {
+    width: 100%;
+    height: 100vh;
+    background-color: $darkBAckground;
+    display: flex;
+}
+
+
+//profile edit blade start
+.profile-edit-card {
+    width: 800px;
+    height: 500px;
+    background-color: $backgroundSecondary;
+    margin: auto;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 1);
+
+    .profile-edit-card-top {
+
+        .breadcrumbs {
+            padding: 20px 0 30px 80px;
+
+            .breadcrumbs_item {
+                display: inline-block;
+
+                &:after {
+                    content: '\203a';
+                    margin: 0 5px;
+                    color: $darkBAckground;
+                    font-size: 18px;
+                    padding-top: 0;
+                }
+
+                &:last-child:after {
+                    content: none;
+                }
+
+                .breadcrumbs-link {
+                    color: #999999;
+                    font-size: 14px;
+
+                    @include _350 {
+                        font-size: 12px;
+                    }
+                }
+
+                .breadcrumbs_link_acive {
+                    color: $mainColor;
+                    font-weight: 500;
+                }
+            }
+        @include _350 {
+            padding: 10px 0 10px 20px;
         }
 
-
+        }
     }
 
+.profile-edit-form {
+    width: 100%;
+    height: 80%;
+    padding: 15px 80px;
+
+    .profile-editcard-bottom {
+        display: flex;
+        flex-direction: column;
+        label {
+            font-size: 14px;
+            color: #495057;
+            margin-bottom: 5px;
+            font-weight: 500;
+
+            @include _350 {
+                font-size: 12px;
+                font-weight: 400;
+                margin-bottom: 2px;
+            }
+        }
+        input {
+            height: 30px;
+            color: #708090;
+            margin-bottom: 15px;
+            padding: 5px 5px 0 5px;
+            background-color: transparent;
+            border: none;
+            border-bottom: 1px solid silver;
+
+            &:focus {
+                color: $darkBAckground;
+                outline: none;
+                transition: .8s border-bottom-color;
+                border-bottom: 1px solid $mainColor;
+            }
+
+            @include not-last-child('input') {
+                border-bottom: none!important;
+            }
+
+            @include _350 {
+                font-size: 12px;
+            }
+
+        }
     }
 
+    .editBtn {
+        width: 100%;
+        text-align: center;
+        button {
+            width: 60%;
+
+            @include _350 {
+                width: 100%;
+            }
+
+            @include _768 {
+                width: 100%;
+            }
+        }
+    }
+    @include _350 {
+        padding: 15px 20px;
+    }
+}
+
+    @include _350 {
+        width: 250px;
+        height: 420px;
+    }
+    @include _768 {
+        width: 500px;
+    }
+}
+
+//post edit
+.edit-post {
+    width: 700px;
+    height: 400px;
+
+    @include _350 {
+        width: 250px;
+    }
+
+    @include _768 {
+        width: 400px;
+    }
+}
+//profile edit blade end
 
 
+//POSTS INDEX (SHOW FOLLOWINNGS' POSTS)
+.following-posts-banner {
+    width: 100%;
+    min-height: 100vh;
+    background-color: $darkBAckground;
 
+    .following-cred {
+        max-width: 100%;
+        min-height: 100%;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: 100px 100px 50px 150px;
+
+        .followings-posts-wrapper {
+            .following-post {
+                width: 400px;
+                height: 400px;
+                margin-right: 250px;
+                display: flex;
+                flex-direction: column;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+
+                h2 {
+                    color: $backgroundSecondary;
+                    font-weight: 300;
+                    font-size: 14px;
+                    margin-bottom: 10px;
+                }
+
+                @include _350 {
+                    width: 100%;
+                }
+
+                @include _768 {
+                    width: 100%;
+                }
+            }
+
+        }
+
+        .users-list {
+            width: 400px;
+            max-height: 500px;
+            background-color: $backgroundSecondary;
+            display: flex;
+            flex-direction: column;
+            overflow: auto;
+            box-shadow: 1px 2px 6px 5px rgba(208,209,214,0);
+
+
+            h1 {
+                font-size: 18px;
+                font-weight: 400;
+                text-align: center;
+                padding: 15px 0 20px 0;
+                border-bottom: 1px solid silver;
+                margin: 0 30px 0 30px;
+            }
+
+            .followings_data {
+                display: flex;
+
+                a {
+                    font-size: 12px;
+                    font-weight: 400;
+                    padding: 25px 0 0 10px;
+                }
+
+                img {
+                    width: 70px;
+                    height: 70px;
+                    padding: 10px 10px;
+                    border-radius: 50%;
+                }
+
+            }
+
+        }
+
+        @include _350 {
+            width: 100%;
+            padding: 70px 20px 0 20px;
+        }
+
+        @include _768 {
+            width: 100%;
+            padding: 70px 20px 0 20px;
+        }
+
+    }
+}
+
+//reset password blades
+.send-password-reset-wrapper {
+    max-width: 100%;
+    height: calc(100vh - 100px);
+    display: flex;
+    background-color: $darkBAckground;
+
+    .send-password-reset-banner {
+        width: 500px;
+        height: 250px;
+        background-color: $backgroundSecondary;
+        margin: auto;
+        padding: 30px 50px 20px 50px;
+
+        form {
+            display: flex;
+            flex-direction: column;
+
+            label {
+                font-size: 14px;
+                color: $darkBAckground;
+
+                @include _350 {
+                    margin-bottom: 10px;
+                }
+
+                @include _768 {
+                    margin-bottom: 10px;
+                }
+            }
+
+            input {
+                margin-top: 10px;
+                padding: 10px 5px 5px 5px;
+
+                &:focus {
+                    outline: none;
+                }
+            }
+
+            button {
+                font-size: 12px;
+                width: 100%;
+
+                @include _350 {
+                    font-size: 11px;
+                    letter-spacing: 0;
+                }
+            }
+        }
+
+        @include _350 {
+            width: 260px;
+            padding: 30px 25px 10px 25px;
+        }
+
+        @include _768 {
+            width: 400px;
+        }
+    }
+
+}

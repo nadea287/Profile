@@ -90,7 +90,7 @@
 {{--@endsection--}}
 
 
-@extends('layouts.header')
+@extends('layouts.bloglayout')
 @section('content')
     <div class="login_form_page_wrapper">
         <div class="login-form-wrapper register_form_wrapper">
@@ -162,6 +162,4 @@
             </form>
         </div>
     </div>
-
-
 @endsection

@@ -1,5 +1,9 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
-    "/css/profile_sass.css": "/css/profile_sass.css"
+    "/css/profile_sass.css": "/css/profile_sass.css",
+    "/js/delete.js": "/js/delete.js",
+    "/js/follow-button.js": "/js/follow-button.js",
+    "/js/notifications.js": "/js/notifications.js",
+    "/js/post-comment.js": "/js/post-comment.js"
 }

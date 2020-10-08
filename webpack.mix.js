@@ -14,7 +14,10 @@ const mix = require('laravel-mix');
 mix.js([
     'resources/js/app.js',
     'resources/js/main.js',
-    'resources/js/delete-item.js',
 ],'public/js/app.js')
     .sass('resources/sass/app.scss', 'public/css')
-    .sass('resources/sass/profile_sass.scss', 'public/css');
+    .sass('resources/sass/profile_sass.scss', 'public/css')
+mix.copy('resources/js/delete.js', 'public/js/delete.js')
+mix.copy('resources/js/follow-button.js', 'public/js/follow-button.js')
+mix.copy('resources/js/notifications.js', 'public/js/notifications.js')
+mix.copy('resources/js/post-comment.js', 'public/js/post-comment.js')

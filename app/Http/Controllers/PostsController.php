@@ -3,12 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePostRequest;
+use App\Models\Flag;
 use App\Models\Post;
+use App\Models\Profile;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
+use function GuzzleHttp\Promise\all;
 
 class PostsController extends Controller
 {
@@ -24,7 +29,9 @@ class PostsController extends Controller
      */
     public function index()
     {
-        //
+        $users = auth()->user()->following->pluck('target_id');
+        $posts = Post::whereIn('user_id', $users)->get();
+        return view('post.index', compact('posts'));
     }
 
     /**
@@ -101,6 +108,7 @@ class PostsController extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
+        $post->comments()->delete();
         File::delete(public_path() . '/storage/' . $post->image);
     }
 }

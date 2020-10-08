@@ -49739,10 +49739,9 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
-var app = new Vue({
-  el: '#app'
-});
+// const app = new Vue({
+//     el: '#app',
+// });
 
 /***/ }),
 
@@ -49860,67 +49859,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/delete-item.js":
-/*!*************************************!*\
-  !*** ./resources/js/delete-item.js ***!
-  \*************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-$(function () {
-  $.ajaxSetup({
-    headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-  });
-
-  function confirmDelete(button, text) {
-    $(button).on("click", function () {
-      var response = confirm(text);
-      if (!response) return false;
-    });
-  }
-
-  confirmDelete(".delete_post_btn", 'Do you want to delete this post?');
-  $(document).on("click", ".delete_post_btn", function () {
-    var id = $(this).attr('id');
-    var delete_btn = $(this);
-
-    if (confirmDelete) {
-      delete_btn.closest('.post-wrapper').remove();
-      $.ajax({
-        url: '/post/' + id,
-        method: 'DELETE',
-        data: id = id
-      }).done(function (result) {}).fail(function (error) {
-        console.log(error);
-      });
-    } else return false;
-  });
-  confirmDelete('.profile_delete_btn', 'Do you want to delete your profile?');
-  $(document).on("click", ".profile_delete_btn", function () {
-    var id = $(this).attr('id');
-    var delete_btn = $(this);
-
-    if (confirmDelete) {
-      delete_btn.closest('.profile_banner_wrapper').remove();
-      $.ajax({
-        url: '/profile/' + id,
-        method: 'DELETE',
-        data: id = id
-      }).done(function (result) {
-        console.log(result);
-      }).fail(function (error) {
-        console.log(error);
-      });
-    } else return false;
-
-    location.href = "/login";
-  });
-});
-
-/***/ }),
-
 /***/ "./resources/js/main.js":
 /*!******************************!*\
   !*** ./resources/js/main.js ***!
@@ -49928,6 +49866,8 @@ $(function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
+//hide after pseudo element
+$(".display-user-name").addClass('no-after');
 var hamburger = document.querySelector('.header .nav-bar .nav-list .hamburger');
 var mobile_menu = document.querySelector('.header .nav-bar .nav-list ul');
 var header = document.querySelector('.header.first-container');
@@ -49938,34 +49878,32 @@ hamburger.addEventListener('click', function () {
 document.addEventListener('scroll', function () {
   var scroll_position = window.scrollY;
 
-  if (scroll_position > 250) {
+  if (scroll_position > 50) {
     header.style.backgroundColor = "#29323c";
   } else {
     header.style.backgroundColor = "transparent";
   }
-});
-var backTop = {
-  init: function init() {
-    $(doc).ready(function () {
-      // Show or Hide The Sticky Footer Button
-      $(window).scroll(function () {
-        if ($(this).scrollTop() > 200) {
-          $('#back_to_top').fadeIn(200);
-        } else {
-          $('#back_to_top').fadeOut(200);
-        }
-      }); // Animate the scroll to top
+}); //AOS
 
-      $('#back_to_top').click(function (e) {
-        e.preventDefault();
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
-        });
-      });
-    });
+AOS.init({
+  delay: 200
+}); //arrow up
+
+var toTop = document.querySelector(".arrow-up-wrapper-section");
+window.addEventListener("scroll", function () {
+  if (window.pageYOffset > 100) {
+    //if page was scrolled 100 px
+    toTop.classList.add("active_back_to_top");
+  } else {
+    toTop.classList.remove("active_back_to_top");
   }
-};
+});
+toTop.addEventListener("click", function () {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+});
 
 /***/ }),
 
@@ -49992,15 +49930,14 @@ var backTop = {
 /***/ }),
 
 /***/ 0:
-/*!*****************************************************************************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/js/main.js ./resources/js/delete-item.js ./resources/sass/app.scss ./resources/sass/profile_sass.scss ***!
-  \*****************************************************************************************************************************************************/
+/*!***********************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/js/main.js ./resources/sass/app.scss ./resources/sass/profile_sass.scss ***!
+  \***********************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! C:\wamp64\www\profile-blog\resources\js\app.js */"./resources/js/app.js");
 __webpack_require__(/*! C:\wamp64\www\profile-blog\resources\js\main.js */"./resources/js/main.js");
-__webpack_require__(/*! C:\wamp64\www\profile-blog\resources\js\delete-item.js */"./resources/js/delete-item.js");
 __webpack_require__(/*! C:\wamp64\www\profile-blog\resources\sass\app.scss */"./resources/sass/app.scss");
 module.exports = __webpack_require__(/*! C:\wamp64\www\profile-blog\resources\sass\profile_sass.scss */"./resources/sass/profile_sass.scss");
 

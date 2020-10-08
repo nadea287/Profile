@@ -72,7 +72,7 @@
 {{--</div>--}}
 {{--@endsection--}}
 
-@extends('layouts.header')
+@extends('layouts.bloglayout')
 @section('content')
 <div class="login_form_page_wrapper">
     <div class="login-form-wrapper">
@@ -103,7 +103,7 @@
                     <button type="submit" class="cta">Login</button>
                 </div>
                 <div class="bottom-text">
-                <h6>Don't have an account?</h6> <a href="">Sign up</a>
+                <a href="{{ route('password.request') }}">Forgot Your Password?</a>
                 </div>
             </form>
         </div>

@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Comment;
+use App\Observers\CommentObserver;
+use App\User;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,6 +27,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        View::composer('post.index', function ($view) {
+           $view->with('users', User::orderBy('id', 'DESC')->get());
+        });
+
+//        Comment::observe(CommentObserver::class);
     }
 }

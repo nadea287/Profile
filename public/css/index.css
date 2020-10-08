@@ -14,7 +14,7 @@ body {
 }
 
 a {
-    text-decoration: none;
+    text-decoration: none!important;
 }
 .first-container {
     min-height: 100vh;
@@ -69,10 +69,11 @@ p {
     font-size: .75rem;
     letter-spacing: .1rem;
     position: relative;
-    transition: .7s ease-in-out;
+    transition: .3s ease-in-out;
     transition-property: background-color, color;
     z-index: 1;
     outline: none;
+    cursor: pointer;
 }
 
 
@@ -282,10 +283,91 @@ p {
     transform: scaleX(0);
 }
 
+
+
+.nav-wrapper .display-user-name a::before,
+.nav-wrapper .notification-icon a::before
+{
+    content: none;
+    display: none;
+}
+
+.display-user-name a {
+    letter-spacing: 0!important;
+    font-size: 13px!important;
+    font-weight: 400!important;
+    text-transform: lowercase!important;
+}
+
 .nav-wrapper li a:hover::before,
 .nav-wrapper li a:focus::before {
     transform: scaleX(1);
 }
+
+/*NOTIFICATIONS*/
+
+.notification-icon img {
+    width: 20px!important;
+    height: 20px!important;
+    padding-top: 5px!important;
+    cursor: pointer;
+}
+
+.notification-icon img:hover {
+    opacity: .7;
+}
+
+.notifications-options {
+    position: relative;
+}
+
+.notifications-options span {
+    color: #f00;
+    font-size: 12px;
+    font-weight: 500;
+    position: absolute;
+}
+
+.notifi-box {
+    width: 280px;
+    height: 0px;
+    height: 510px;
+    opacity: 0;
+    position: absolute;
+    background-color: #eee;
+    top: 63px;
+    right: 10px;
+    transition: .5s opacity, 250ms height;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    overflow: auto;
+}
+
+.notifi-box h3 {
+    color: #2C2E31;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-transform: initial;
+}
+
+.notifi-box span {
+    color: #2C2E31;
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0px;
+    text-transform: initial;
+}
+
+.notifi-box h2 {
+    padding: 20px 0 30px 10px;
+
+}
+
+.notifi-box .empty_list {
+    width: 80%!important;
+    height: 50%!important;
+}
+
 
 /*end nav section*/
 
@@ -363,31 +445,36 @@ p {
 }
 
 /*ARROW*/
-.arrow-up-wrapper {
+.arrow-up-wrapper-section {
     width: 50px;
     height: 50px;
-    position: absolute;
-    right: 1%;
-    top: 88%;
-}
-
-.arrow-up {
     position: fixed;
-    z-index: 99;
-}
-
-.arrow-up img {
-    width: 80%;
-    height: 80%;
-}
-
-.show_back_to_top {
-    opacity: 1;
-}
-
-.hide_back_to_top {
+    right: 1%;
+    top: 90%;
     opacity: 0;
+    pointer-events: none;
+    transition: all .4s;
+    background-color: #559A9F;
+    border-radius: 50%;
+    display: flex;
+    text-align: center;
+    box-shadow: 0 20px 50px #ddd;
+;
 }
+
+.arrow-up-wrapper-section i {
+    margin: auto;
+    padding-bottom: 7px;
+    vertical-align: center;
+    font-size: 30px;
+    color: white;
+}
+
+.active_back_to_top {
+    opacity: 1;
+    pointer-events: auto;
+}
+
 
 
 /*END ARROW*/
@@ -662,28 +749,34 @@ p {
 
 /*Footer Start*/
 #footer {
-    background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);
+    min-height: 100px;
+    /*background-image: linear-gradient(60deg, #29323c 0%, #485563 100%);*/
+    background-color: #2C2E31;
+    /*background-color: #29323C;*/
 }
 
 #footer .footer {
-    min-height: 200px;
     flex-direction: column;
-    padding-top: 50px;
-    padding-bottom: 10px;
+    padding-top: 20px;
+    padding-bottom: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-#footer h2 {
-    color: white;
-    font-weight: 300;
-    font-size: 1rem;
-    letter-spacing: .1rem;
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
+/*#footer h2 {*/
+/*    color: white;*/
+/*    font-weight: 300;*/
+/*    font-size: 1rem;*/
+/*    letter-spacing: .1rem;*/
+/*    margin-top: 10px;*/
+/*    margin-bottom: 10px;*/
+/*}*/
 
 #footer .social-icon {
     display: flex;
-    margin-bottom: 30px;
+    margin-bottom: 5px;
+    margin-top: 15px;
 }
 
 #footer .social-item {
@@ -705,6 +798,7 @@ p {
 #footer p {
     color: white;
     font-size: .7rem;
+    padding-left: 10px;
 }
 
 /*Footer End*/
@@ -894,6 +988,7 @@ p {
     }
 
 
+
     /*end header*/
 
     .section-title {
@@ -954,4 +1049,11 @@ p {
 
 .show-text .plus-icon {
     display: none;
+}
+
+
+@media only screen and (max-width: 350px) {
+    .notifi-box {
+        width: 200px;
+    }
 }

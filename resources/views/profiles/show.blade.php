@@ -48,9 +48,8 @@
 
 
 
-@extends('layouts.header')
+@extends('layouts.bloglayout')
 @section('content')
-
 <div class="profile_banner_wrapper">
     <div class="profile-banner">
         <div class="profile-banner-top"></div>
@@ -83,12 +82,31 @@
                             <h6>{{ $user->profile->title ?? "" }}</h6>
                             <div class="user-media">
                                 <a href="">Posts <strong>{{ $user->posts->count() }}</strong></a>
-                                <a href="">Followers <strong>10</strong></a>
-                                <a href="">Following <strong>10</strong></a>
+                                <a href="">Followers <strong id="followers">{{ $user->followers->count() }}</strong></a>
+                                <a href="">Following <strong id="following">{{ $user->following->count() }}</strong></a>
                             </div>
-                            <div class="follow-button">
-                                <button>Follow</button>
+                            @if(auth()->user())
+                                @if(auth()->user()->profile->id != $user->id)
+                                    {{--@can('update', $user->profile)--}}
+                                    <div class="follow-button">
+                                        <button id="followBtn" data-user-id="{{ $user->id }}"
+                                                onclick="followUser(event)">
+                                            Follow
+                                        </button>
+                                    </div>
+{{--                             @endcan--}}
+                                @else
+                                <div class="profile-url">
+                                    <a href="{{ route('post.index') }}">
+                                        <strong>My Followings</strong>
+                                    </a>
+                                </div>
+                                @endif
+                            @else
+                            <div class="profile-url">
+                                <a href=""><strong>{{ $user->profile->description ?? 'N/A' }}</strong></a>
                             </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -112,5 +130,9 @@
 </div>
 
 
+@push('scripts')
+    <script src="{{ asset('js/follow-button.js') }}"></script>
+    <script src="{{ asset('js/delete.js') }}"></script>
+@endpush
 @endsection
 
