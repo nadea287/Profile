@@ -626,7 +626,7 @@
 
 .show-post-wrapper .show-post-banner .post-comments-display .comment-banner .comment-actions .comment_edit_icon i {
   font-size: 14px;
-  color: #2C2E31;
+  color: #559A9F;
   margin: 0 5px 0 70%;
   cursor: pointer;
   display: none;
@@ -634,7 +634,7 @@
 
 .show-post-wrapper .show-post-banner .post-comments-display .comment-banner .comment-actions .comment_edit_icon span {
   font-size: 14px;
-  color: #2C2E31;
+  color: red;
   cursor: pointer;
   padding-bottom: 0;
   display: none;
@@ -647,6 +647,12 @@
 
 .show-post-wrapper .show-post-banner .post-comments-display .comment-banner .comment-actions .comment_body {
   cursor: text;
+}
+
+.show-post-wrapper .show-post-banner .post-comments-display .comment-banner .comment-actions .comment_body span {
+  min-height: 1em;
+  min-width: 100%;
+  display: inline-block;
 }
 
 @media (max-width: 350px) {

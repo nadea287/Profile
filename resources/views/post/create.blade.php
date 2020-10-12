@@ -1,6 +1,5 @@
 @extends('layouts.bloglayout')
 @section('content')
-
     <div class="edit_form_page_wrapper">
         <div class="profile-edit-card edit-post">
             <div class="profile-edit-card-top">

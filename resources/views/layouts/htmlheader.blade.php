@@ -10,10 +10,7 @@
     <title>freeCodeCamp</title>
     <link rel="stylesheet" href="{{ asset('css/profile_sass.css') }}">
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
-    {{--    <link rel="dns-prefetch" href="//fonts.gstatic.com">--}}
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    @yield('styles')
-{{--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">--}}
 </head>

@@ -5,77 +5,13 @@ $(function () {
         }
     });
 
-    function confirmDelete(button, text) {
+    swallConfirmDeleteProfile(".profile_delete_btn", 'delete peofile?', '.profile_banner_wrapper', 'profile');
+    swallConfirmDelete(".delete_comment", "delete comment?", '.single_comment', 'comment');
+    swallConfirmDelete(".delete_post_btn", 'Do you want to delete this post?', '.post-wrapper', 'post');
+
+    function swallConfirmDeleteProfile(button, text, deleteSth, type) {
         $(button).on("click", function () {
-            var response = confirm(text);
-            if (!response) return false;
-        });
-    }
-
-    confirmDelete(".delete_post_btn", 'Do you want to delete this post?');
-
-    $(document).on("click", ".delete_post_btn", function () {
-        var id = $(this).attr('id');
-        var delete_btn = $(this);
-        if (confirmDelete) {
-            delete_btn.closest('.post-wrapper').remove();
-            $.ajax({
-                url: '/post/' + id,
-                method: 'DELETE',
-                data: id = id
-            }).done(function (result) {
-
-            }).fail(function (error) {
-                console.log(error);
-            });
-        } else return false;
-    });
-
-    confirmDelete('.profile_delete_btn', 'Do you want to delete your profile?');
-    $(document).on("click", ".profile_delete_btn", function () {
-        var id = $(this).attr('id');
-        var delete_btn = $(this);
-        if (confirmDelete) {
-            delete_btn.closest('.profile_banner_wrapper').remove();
-            $.ajax({
-                url: '/profile/' + id,
-                method:'DELETE',
-                data: id = id
-            }).done(function (result) {
-                console.log(result);
-            }).fail(function (error) {
-                console.log(error);
-            });
-        } else return false;
-
-        location.href = "/login";
-    });
-
-    // confirmDelete(".delete_comment", "wanna delete?");
-
-    // $(document).on("click", ".delete_comment", function () {
-    //     var id = $(this).attr('id');
-    //     var delete_btn = $(this);
-    //     if (confirmDelete) {
-    //         delete_btn.closest('.single_comment').remove();
-    //         $.ajax({
-    //           url: '/comment/' + id,
-    //             method: 'DELETE',
-    //             data: {
-    //               id: id
-    //             }
-    //         }).done(function () {
-    //
-    //         }).fail(function (error) {
-    //             console.log(error);
-    //         });
-    //     } else {
-    //         return false;
-    //     }
-    // })
-
-    function swallConfirmDelete(button, text, deleteSth) {
-        $(button).on("click", function () {
+            var id = $(this).attr('id');
             var $this = $(this);
             swal({
                 title: "Are you sure?",
@@ -84,41 +20,57 @@ $(function () {
                 buttons: true,
                 dangerMode: true,
             })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        swal("Your omment has been deleted!", {
+                            icon: "success",
+                        });
+                        $this.closest(deleteSth).remove();
+                        deleteItem(type, id);
+                        location.href = "/login";
+                    }
+                }).fail(function (error) {
+                console.log(error);
+            });
+
         })
     }
 
-
-    $(document).on("click", ".delete_comment", function () {
-        var id = $(this).attr('id');
-        var delete_btn = $(this);
-
-        swal({
-            title: "Are you sure?",
-            text: "Once deleted, you will not " +
-                "be able to recover this comment!",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
+    function swallConfirmDelete(button, text, deleteSth, type) {
+        $(button).on("click", function () {
+            var id = $(this).attr('id');
+            var $this = $(this);
+            swal({
+                title: "Are you sure?",
+                text: text,
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        swal("Your omment has been deleted!", {
+                            icon: "success",
+                        });
+                        $this.closest(deleteSth).remove();
+                        deleteItem(type, id);
+                    }
+                }).fail(function (error) {
+                console.log(error);
+            })
         })
-            .then((willDelete) => {
-                if (willDelete) {
-                    swal("Your omment has been deleted!", {
-                        icon: "success",
-                    });
-                    delete_btn.closest('.single_comment').remove();
-                    $.ajax({
-                      url: '/comment/' + id,
-                        method: 'DELETE',
-                        data: {
-                          id: id
-                        }
-                    }).done(function () {
+    }
 
-                    }).fail(function (error) {
-                        console.log(error);
-                    });
-                }
-            });
-    })
+    function deleteItem(type, id) {
+        $.ajax({
+            url: '/' + type + '/' + id,
+            method: 'DELETE',
+            data: id = id
+        }).done(function (result) {
+
+        }).fail(function (error) {
+            console.log(error);
+        });
+    }
 
 });

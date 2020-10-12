@@ -557,13 +557,10 @@
                     .comment_edit_icon {
                             display: flex;
                             align-items: baseline;
-                            //justify-content: flex-end;
-                            //position: relative;
-                            //z-index: 10000;
 
                             i {
                                 font-size: 14px;
-                                color: $darkBAckground;
+                                color: $mainColor;
                                 margin: 0 5px 0 70%;
                                 cursor: pointer;
                                 display: none;
@@ -571,7 +568,7 @@
 
                         span {
                             font-size: 14px;
-                            color: $darkBAckground;
+                            color: red;
                             cursor: pointer;
                             padding-bottom: 0;
                             display: none;
@@ -586,6 +583,12 @@
 
                     .comment_body {
                         cursor: text;
+
+                        span {
+                            min-height: 1em;
+                            min-width: 100%;
+                            display: inline-block;
+                        }
                     }
                 }
 

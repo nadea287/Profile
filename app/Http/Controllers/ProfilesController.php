@@ -9,6 +9,7 @@ use App\Models\Profile;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\Facades\Image;
 
 class ProfilesController extends Controller

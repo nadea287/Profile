@@ -1,7 +1,6 @@
 <section id="footer">
     <div class="footer">
         <div class="brand"><h1><span>L</span>orem <span>I</span>psum</h1></div>
-{{--        <h2>Lorem ipsum dolor sit amet.</h2>--}}
         <div class="social-icon">
             <div class="social-item">
                 <a href=""><img src="{{ asset('/images/facebook-24.png') }}" alt=""></a>
